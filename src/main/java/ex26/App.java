@@ -27,8 +27,7 @@ public class App {
 }
 
 class PaymentCalculator {
-    private double dailyRate, bal, monthlyPayment;
-    private int numMonths;
+    private final double dailyRate, bal, monthlyPayment;
 
     public PaymentCalculator(double APR, double bal, double monthlyPayment) {
         this.dailyRate = (APR / 100) / 365;
@@ -36,7 +35,6 @@ class PaymentCalculator {
         this.monthlyPayment = monthlyPayment;
     }
     int calculateMonthsUntilPaidOff() {
-        numMonths = (int)Math.ceil(-(1.0/30.0) * ((Math.log10(1 + (bal/monthlyPayment) * (1 - Math.pow((1 + dailyRate), 30)))) / Math.log10(1 + dailyRate)));
-        return numMonths;
+        return (int)Math.ceil(-(1.0 / 30.0) * ((Math.log10(1 + (bal / monthlyPayment) * (1 - Math.pow((1 + dailyRate), 30)))) / Math.log10(1 + dailyRate)));
     }
 }
