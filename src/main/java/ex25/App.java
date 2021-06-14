@@ -20,13 +20,13 @@ public class App {
             }
         } else {
             for(i = 0; i < pw.length; i++) {
-                if(!(pw[i] > 48 && pw[i] < 57) &&
-                        !(pw[i] > 65 && pw[i] < 90) &&
-                        !(pw[i] > 97 && pw[i] < 122))
+                if(!(pw[i] >= '0' && pw[i] <= '9') &&
+                        !(pw[i] >= 'A' && pw[i] <= 'Z') &&
+                        !(pw[i] >= 'a' && pw[i] <= 'z'))
                 {
-                    return 2; // strong password (letters && 1 or more numbers && len > 8)
-                } else {
                     return 3; // very strong password (letters && numbers && special chars && len > 8)
+                } else {
+                    return 2; // strong password (letters && 1 or more numbers && len > 8)
                 }
             }
         }
@@ -41,26 +41,12 @@ public class App {
         System.out.print("Enter the password you would like to test: ");
         pass = in.nextLine();
         result = passwordValidator(pass);
-        switch(result) {
-            case -1:
-                System.out.printf("The password '%s' does not meet any of the above criteria.\n", pass);
-                break;
-
-            case 0:
-                System.out.printf("The password '%s' is a very weak password\n", pass);
-                break;
-
-            case 1:
-                System.out.printf("The password '%s' is a weak password\n", pass);
-                break;
-
-            case 2:
-                System.out.printf("The password '%s' is a strong password\n", pass);
-                break;
-
-            case 3:
-                System.out.printf("The password '%s' is a very strong password\n", pass);
-                break;
+        switch (result) {
+            case -1 -> System.out.printf("The password '%s' does not meet any of the above criteria.\n", pass);
+            case 0 -> System.out.printf("The password '%s' is a very weak password\n", pass);
+            case 1 -> System.out.printf("The password '%s' is a weak password\n", pass);
+            case 2 -> System.out.printf("The password '%s' is a strong password\n", pass);
+            case 3 -> System.out.printf("The password '%s' is a very strong password\n", pass);
         }
     }
 }
