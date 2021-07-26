@@ -50,6 +50,10 @@ class EmpList {
         print();
     }
 
+    public ArrayList<String> getList() {
+        return list;
+    }
+
     public void print() {
         System.out.printf("There are %d employees\n", list.size());
         for(int i = 0; i < list.size(); i++) {

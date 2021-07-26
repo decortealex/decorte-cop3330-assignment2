@@ -7,6 +7,7 @@ package ex28;
 import java.util.Scanner;
 
 public class App {
+
     public static void main(String[] args) {
         int i, reps;
         double buf = 0;

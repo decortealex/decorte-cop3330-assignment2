@@ -69,6 +69,7 @@ class NumberGuess {
         this.difficulty = difficulty;
     }
 
+
     public void genTargetNum() {
         switch (this.difficulty) {
             case 1 -> targetNum = (int) (Math.random() * 10.0);
@@ -81,6 +82,10 @@ class NumberGuess {
 
     public int valGuess(int guess) {
         return guess - targetNum;
+    }
+
+    public int getTargetNum() {
+        return targetNum;
     }
 }
 

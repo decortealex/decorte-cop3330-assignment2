@@ -10,6 +10,7 @@ public class App {
     public static int calcYearsTillDouble(double rate) {
         return (int)Math.ceil(72 / rate);
     }
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         double rate = 0;

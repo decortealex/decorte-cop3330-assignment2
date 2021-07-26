@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class App {
     public static int calcKarvonenHR(int age, int restingHR, int intensity) {
         double intensityDec = (double)intensity / 100;
-        return (int)((((220 - age) - restingHR) * intensityDec) + restingHR);
+        return (int)((((220 - age) - restingHR) * intensityDec
+        ) + restingHR);
     }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
