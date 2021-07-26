@@ -2,7 +2,7 @@
  * UCF COP3330 SUMMER 2021 ASSIGNMENT 1 SOLUTION
  * COPYRIGHT 2021 ALEXANDER DE CORTE
  */
-package ex39;
+package ex40;
 
 import java.util.*;
 
@@ -45,24 +45,7 @@ public class App {
         return records;
     }
 
-    public static int[] getPrintOrder(List<HashMap<Integer, String>> records) {
-        int[] order = new int[6];
-        Map<String, Integer> sorter = new TreeMap<>();
-
-        for(Map.Entry<Integer, String> e : records.get(1).entrySet()) {
-            sorter.put(e.getValue(), e.getKey());
-        }
-
-        int i = 0;
-        for(Map.Entry<String, Integer> e : sorter.entrySet()) {
-            order[i] = e.getValue();
-            i++;
-        }
-
-        return order;
-    }
-
-    public static String toSortedRecordsString(List<HashMap<Integer, String>> records) {
+    public static String toRecordsString(List<HashMap<Integer, String>> records, List<Integer> keysToPrint) {
         StringBuilder output = new StringBuilder();
 
         output.append("First Name          |");
@@ -70,8 +53,8 @@ public class App {
         output.append(" Position           |");
         output.append(" Separation Date    |");
         output.append("\n--------------------|--------------------|--------------------|--------------------|\n");
-        int[] order = getPrintOrder(records);
-        for(int key : order) {
+
+        for(int key : keysToPrint) {
             for( HashMap<Integer, String> map : records) {
                 output.append(map.get(key));
                 output.append(" ".repeat(Math.max(0, (20 - map.get(key).length()))));
@@ -84,9 +67,32 @@ public class App {
         return output.toString();
     }
 
+    public static List<Integer> getKeysFromQuery(List<HashMap<Integer, String>> records, String query) {
+        List<Integer> matchingKeys = new ArrayList<>();
+
+        for(int i = 0; i <= 1; i++) {
+            for(Map.Entry<Integer, String> e : records.get(i).entrySet()) {
+                if(e.getValue().toLowerCase().contains(query.toLowerCase())) {
+                    if(!matchingKeys.contains(e.getKey()))
+                        matchingKeys.add(e.getKey());
+                }
+            }
+        }
+
+        return matchingKeys;
+    }
+
     public static void main(String[] args) {
         List<HashMap<Integer, String>> records = genRecords();
+        List<Integer> keysFromQuery;
+        Scanner in = new Scanner(System.in);
+        String query;
 
-        System.out.print(toSortedRecordsString(records));
+        System.out.print("Enter a search string: ");
+        query = in.nextLine();
+
+        keysFromQuery = getKeysFromQuery(records, query);
+        System.out.print(toRecordsString(records, keysFromQuery));
+
     }
 }
